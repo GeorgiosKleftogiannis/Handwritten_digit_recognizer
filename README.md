@@ -10,7 +10,7 @@
 ## 1-Packages
 First we import all the packages used for the code.
 
-'''
+```
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -21,4 +21,4 @@ from tensorflow.keras.activations import relu
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-'''
+```
