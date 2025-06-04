@@ -10,7 +10,8 @@
 ## 1-Packages
 First we import all the packages used for the code.
 
-'import pandas as pd
+'''
+import pandas as pd
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
@@ -19,4 +20,5 @@ from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Activa
 from tensorflow.keras.activations import relu
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.preprocessing.image import ImageDataGenerator'
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+'''
