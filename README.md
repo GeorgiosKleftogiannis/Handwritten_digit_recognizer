@@ -61,8 +61,8 @@ print (x_tr.shape)
 ```
 
 ## 3-Neural Network
-The architecture chosen consists of two Convolutional layers and two Dense layers. Every Convolutional layer is followed by a BatchNormalization and a MaxPooling layer, to address the problem of overfitting, stabilize trainning and speed up convergence. Further, a Flatten layer is used after the two convolutional layers. Finally, before every Dense layer a Dropout layer is introduced for regularization purposes.
-
+The chosen architecture consists of two Convolutional layers followed by two Dense layers. Each Convolutional layer is followed by a BatchNormalization and a MaxPooling layer to stabilize training, accelerate convergence, and help mitigate overfitting. A Flatten layer is applied after the second Convolutional block to convert feature maps into a 1D vector. Additionally, Dropout layers are included before each Dense layer for regularization purposes. The model’s parameters were fine-tuned to avoid both underfitting (high bias) and overfitting (high variance).
+ 
 | Layer (type)       | Output Shape        | Param # |
 |--------------------|---------------------|---------|
 | Conv2D             | (None, 28, 28, 32)  | 320     |
@@ -103,7 +103,6 @@ model = Sequential([
     Dense(10, activation='softmax', name="L4")
 ])
 model.summary()
-print("Model output shape:", model.output_shape)
 
 model.compile(optimizer=Adam(learning_rate=0.001),loss=tf.keras.losses.SparseCategoricalCrossentropy(),metrics=['accuracy'])
 history = model.fit(
@@ -128,6 +127,8 @@ plt.legend()
 plt.grid(True)
 plt.show()
 ```
+
+
 
 ## 5-Predictions
 After confirming that the model generalizes well—showing no signs of overfitting or underfitting—we move on to generate predictions on the test set.
