@@ -81,8 +81,6 @@ The architecture chosen consists of two Convolutional layers and two Dense layer
 | Dropout            | (None, 128)         | 0       |
 | Dense              | (None, 10)          | 1290    |
 
-**Important Note** The use of *from_logits=True* in the loss function (SparseCategoricalCrossentropy) indicates that the model outputs raw logits rather than probabilities. This is consistent with the use of a linear activation in the final layer, as applying softmax is handled internally by the loss function.
-
 ```python
 model = Sequential([
     tf.keras.Input(shape=(28,28,1)),
