@@ -28,9 +28,9 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 We now input the training and test data and print their shape. After the data loading we distinguish the features (x_train) from the labels (y_train).
 
 ```python
-train_data = np.loadtxt("/kaggle/input/digit-recognizer/train.csv",delimiter=",",skiprows=1)  
+train_data = np.loadtxt("train.csv",delimiter=",",skiprows=1)  
 print("train data shape = ",train_data.shape)
-test_data = np.loadtxt("/kaggle/input/digit-recognizer/test.csv",delimiter=",",skiprows=1)    
+test_data = np.loadtxt("test.csv",delimiter=",",skiprows=1)    
 print("test data shape = ",test_data.shape)
 x_train = train_data[:,1:]
 y_train = train_data[:,0]
@@ -43,10 +43,6 @@ We split train set into training and cost validation data using train_test_split
 x_train = train_data[:,1:]
 x_train_scaled = x_train/255.0
 y_train = train_data[:,0]
-
-#samples = x_train.shape[0]
-#features = x_train.shape[1]
-#print(samples, features)
 
 ########## Create train and cross validate data ################
 x_tr, x_cv, y_tr, y_cv = train_test_split(x_train_scaled,y_train,test_size=0.20, random_state=1)
@@ -65,10 +61,25 @@ print (x_tr.shape)
 ```
 
 ## 3-Neural Network
-The architecture chosen consists of three Dense Layers
-- Layer 1: 30 units with Relu activation
-- Layer 2: 20 units with Relu activation
-- Layer 3: 10 units with Linear activation
+The architecture chosen consists of two Convolutional layers and two Dense layers. Every Convolutional layer is followed by a BatchNormalization and a MaxPooling layer, to address the problem of overfitting, stabilize trainning and speed up convergence. Further, a Flatten layer is used after the two convolutional layers. Finally, before every Dense layer a Dropout layer is introduced for regularization purposes.
+
+| Layer (type)       | Output Shape        | Param # |
+|--------------------|---------------------|---------|
+| Conv2D             | (None, 28, 28, 32)  | 320     |
+| BatchNormalization | (None, 28, 28, 32)  | 128     |
+| Activation         | (None, 28, 28, 32)  | 0       |
+| MaxPooling2D       | (None, 14, 14, 32)  | 0       |
+| Conv2D             | (None, 14, 14, 64)  | 18496   |
+| BatchNormalization | (None, 14, 14, 64)  | 256     |
+| Activation         | (None, 14, 14, 64)  | 0       |
+| MaxPooling2D       | (None, 7, 7, 64)    | 0       |
+| Flatten            | (None, 3136)        | 0       |
+| Dropout            | (None, 3136)        | 0       |
+| Dense              | (None, 128)         | 401536  |
+| BatchNormalization | (None, 128)         | 512     |
+| Activation         | (None, 128)         | 0       |
+| Dropout            | (None, 128)         | 0       |
+| Dense              | (None, 10)          | 1290    |
 
 **Important Note** The use of *from_logits=True* in the loss function (SparseCategoricalCrossentropy) indicates that the model outputs raw logits rather than probabilities. This is consistent with the use of a linear activation in the final layer, as applying softmax is handled internally by the loss function.
 
@@ -86,7 +97,7 @@ model = Sequential([
     MaxPooling2D(pool_size=2),
     Flatten(),
 
-    Dropout(0.3),
+    Dropout(0.25),
     Dense(128, name="L3"),
     BatchNormalization(),
     Activation('relu'),
@@ -100,7 +111,7 @@ model.compile(optimizer=Adam(learning_rate=0.001),loss=tf.keras.losses.SparseCat
 history = model.fit(
    	x_tr, y_tr,
    	validation_data = (x_cv, y_cv),
-   	epochs=2
+   	epochs=50
 )
 ```
 
@@ -127,7 +138,6 @@ After confirming that the model generalizes well—showing no signs of overfitti
 test_samples = test_data.shape[0]
 x_test_scaled = test_data/255.0
 x_test_scaled = x_test_scaled.reshape(test_samples,28,28,1)
-#x_test_1 = x_test_scaled[0,:]
 # predictions is 2d array with shape [1,4]
 predictions = model.predict(x_test_scaled)
 predictions_descaled = predictions*255.0
