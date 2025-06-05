@@ -1,4 +1,7 @@
-# Outline
+## Overeview
+Handwritten digit recognition algorithm for [Kaggle competition](https://www.kaggle.com/competitions/digit-recognizer) using MNIST data.
+
+## Outline
 - [1-Packages](#1-packages)
 - [2-Data Preprocessing](#2-data-preprocessing)
   - [2.1 Input Data](#4.1)
