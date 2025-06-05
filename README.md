@@ -10,7 +10,7 @@
 ## 1-Packages
 First we import all the packages used for the code.
 
-```
+``` python
 import pandas as pd
 import numpy as np
 import tensorflow as tf
