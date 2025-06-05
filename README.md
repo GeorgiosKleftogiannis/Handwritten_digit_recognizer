@@ -1,5 +1,5 @@
-## Overeview
-Handwritten digit recognition algorithm for [Kaggle competition](https://www.kaggle.com/competitions/digit-recognizer) using MNIST data.
+## Overview
+This project implements a convolutional neural network (CNN) to classify handwritten digits from the MNIST dataset, as part of a [Kaggle competition](https://www.kaggle.com/competitions/digit-recognizer). The model was built and evaluated using TensorFlow/Keras and achieves high accuracy on validation data. It scored 0.994 on the Kaggle test data.
 
 ## Outline
 - [1-Packages](#1-packages)
