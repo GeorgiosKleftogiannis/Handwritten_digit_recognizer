@@ -4,11 +4,11 @@ This project implements a convolutional neural network (CNN) to classify handwri
 ## Outline
 - [1-Packages](#1-packages)
 - [2-Data Preprocessing](#2-data-preprocessing)
-  - [2.1 Input Data](#4.1)
-  - [2.2 Training and Validation Data](#4.1)
-- [3-Neural Network](#3-softmax-function)
-- [4-Model Validation](#4)
-- [5-Predictions](#4)
+  - [2.1 Input Data](#2.1-input-data)
+  - [2.2 Training and Validation Data](#2.2-training-and-validation-data)
+- [3-Neural Network](#3-neural-network)
+- [4-Model Validation](#4-model-validation)
+- [5-Predictions](#5-predictions)
 
 ## 1-Packages
 First we import all the packages used for the code.
