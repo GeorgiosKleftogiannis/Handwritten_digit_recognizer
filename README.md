@@ -133,8 +133,10 @@ plt.show()
 
 
 
+
+
 ## 5-Predictions
-After confirming that the model generalizes well—showing no signs of overfitting or underfitting—we move on to generate predictions on the test set.
+After confirming that the model generalizes well—exhibiting no signs of overfitting or underfitting—we proceed to generate predictions on the test set. The model achieves a prediction accuracy of over 99% on the test data provided by Kaggle.
 
 ```python
 test_samples = test_data.shape[0]
