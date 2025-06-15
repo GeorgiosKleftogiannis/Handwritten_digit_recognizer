@@ -2,8 +2,6 @@
 - [1-Overview](#1-overview)
 - [2-Packages](#2-packages)
 - [3-Data Preprocessing](#3-data-preprocessing)
-  - [3.1-Input Data](#3.1-input-data)
-  - [3.2-Training and Validation Data](#3.2-training-and-validation-data)
 - [4-Neural Network](#4-neural-network)
 - [5-Model Validation](#5-model-validation)
 - [6-Predictions](#6-predictions)
