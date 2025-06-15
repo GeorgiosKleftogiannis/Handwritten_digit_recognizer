@@ -1,16 +1,17 @@
-## Overview
+## Outline
+- [1-Overview](#1-overview)
+- [2-Packages](#2-packages)
+- [3-Data Preprocessing](#3-data-preprocessing)
+  - [3.1-Input Data](#3.1-input-data)
+  - [3.2-Training and Validation Data](#3.2-training-and-validation-data)
+- [4-Neural Network](#4-neural-network)
+- [5-Model Validation](#5-model-validation)
+- [6-Predictions](#6-predictions)
+
+## 1. Overview
 This project implements a convolutional neural network (CNN) to classify handwritten digits from the MNIST dataset, as part of a [Kaggle competition](https://www.kaggle.com/competitions/digit-recognizer). The model was built and evaluated using TensorFlow/Keras and achieves high accuracy on validation data. It scored 0.994 on the Kaggle test data.
 
-## Outline
-- [1-Packages](#1-packages)
-- [2-Data Preprocessing](#2-data-preprocessing)
-  - [2.1 Input Data](#2.1-input-data)
-  - [2.2 Training and Validation Data](#2.2-training-and-validation-data)
-- [3-Neural Network](#3-neural-network)
-- [4-Model Validation](#4-model-validation)
-- [5-Predictions](#5-predictions)
-
-## 1-Packages
+## 2. Packages
 First we import all the packages used for the code.
 
 ``` python
@@ -26,7 +27,7 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 ```
 
-## 2-Data Preprocessing
+## 3. Data Preprocessing
 ### Input Data
 We now input the training and test data and print their shape. After the data loading we distinguish the features (x_train) from the labels (y_train).
 
@@ -63,7 +64,7 @@ x_cv = x_cv.reshape(cv_num,28,28,1)
 print (x_tr.shape)
 ```
 
-## 3-Neural Network
+## 4. Neural Network
 The chosen architecture consists of two Convolutional layers followed by two Dense layers. Each Convolutional layer is followed by a BatchNormalization and a MaxPooling layer to stabilize training, accelerate convergence, and help mitigate overfitting. A Flatten layer is applied after the second Convolutional block to convert feature maps into a 1D vector. Additionally, Dropout layers are included before each Dense layer for regularization purposes. The model’s parameters were fine-tuned to avoid both underfitting (high bias) and overfitting (high variance).
  
 | Layer (type)       | Output Shape        | Param # |
@@ -115,7 +116,7 @@ history = model.fit(
 )
 ```
 
-## 4-Model Validation
+## 5. Model Validation
 To assess the model’s learning behavior, we visualize the training and validation loss over epochs. This helps identify issues such as overfitting or underfitting.
 
 ```python
@@ -135,7 +136,7 @@ plt.show()
 
 
 
-## 5-Predictions
+## 6. Predictions
 After confirming that the model generalizes well—exhibiting no signs of overfitting or underfitting—we proceed to generate predictions on the test set. The model achieves a prediction accuracy of over 99% on the test data provided by Kaggle.
 
 ```python
